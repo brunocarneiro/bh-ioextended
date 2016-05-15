@@ -1,11 +1,6 @@
-# Google App Engine Standard Environment Hello World Sample
+# Live Coding Google IO Extended
 
-This sample demonstrates how to deploy an application on Google App Engine.
-
-See the [Google App Engine standard environment documentation][ae-docs] for more
-detailed instructions.
-
-[ae-docs]: https://cloud.google.com/appengine/docs/java/
+Code written during the Belo Horizonte Google IO Extended
 
 ## Setup
 1. Update the `<application>` tag in `src/main/webapp/WEB-INF/appengine-web.xml`
