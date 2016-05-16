@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.google.appengine.api.channel.ChannelMessage;
 import com.google.appengine.api.channel.ChannelService;
 import com.google.appengine.api.channel.ChannelServiceFactory;
 
 public class LoginServlet extends HttpServlet {
+	
+	private static final String CHANNEL_ID = "BHIOEXTENDED";
 	
 	/**
 	 * Ready
@@ -22,17 +23,10 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		ChannelService channelService = ChannelServiceFactory.getChannelService();
-		
-		//send loggedUsers
-		JSONArray usersArray = new JSONArray(UsersRepository.getInstance().getLoggedUser());
 		JSONObject object = new JSONObject();
-		object.put("type", "usersList");
-		object.put("loggedUsers", usersArray);
+		object.put("messages", new JSONArray(Message.list()));
 		
-		System.out.println( object.toString());
-		channelService.sendMessage( new ChannelMessage(req.getParameter("channelId"), object.toString()));
-		
+		object.write(resp.getWriter());
 	}
 
 	/**
@@ -42,12 +36,8 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		ChannelService channelService = ChannelServiceFactory.getChannelService();
-		String login = req.getParameter("login");
 
-		String channelId = channelService.createChannel(login);
-		
-		UsersRepository.getInstance().getLoggedUser().add(login);
-		UsersRepository.getInstance().getUsersChannelId().put(login, channelId);
+		String channelId = channelService.createChannel(CHANNEL_ID);
 		
 		JSONObject object = new JSONObject();
 		object.put("channelId", channelId);

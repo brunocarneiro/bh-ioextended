@@ -3,15 +3,7 @@
   xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
   version="2.5">
-  <servlet>
-    <servlet-name>hello</servlet-name>
-    <servlet-class>com.example.appengine.helloworld.HelloServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>hello</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
-  
+
   <servlet>
     <servlet-name>login</servlet-name>
     <servlet-class>com.google.ioextended.LoginServlet</servlet-class>
