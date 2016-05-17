@@ -1,6 +1,7 @@
 package com.google.ioextended;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,8 +26,9 @@ public class LoginServlet extends HttpServlet {
 		
 		JSONObject object = new JSONObject();
 		object.put("messages", new JSONArray(Message.list()));
-		
-		object.write(resp.getWriter());
+		resp.setCharacterEncoding("UTF-8");
+		resp.getWriter().write(new String(object.toString().getBytes(), Charset.forName("UTF-8")));
+		resp.getWriter().flush();
 	}
 
 	/**

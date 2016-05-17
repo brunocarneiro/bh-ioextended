@@ -16,8 +16,6 @@ import com.google.appengine.api.channel.ChannelServiceFactory;
 
 public class SendMessageServlet extends HttpServlet {
 	
-	private static final String CHANNEL_ID = "BHIOEXTENDED";
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		

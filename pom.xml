@@ -62,7 +62,14 @@ Copyright 2015 Google Inc. All Rights Reserved.
       <plugin>
         <groupId>com.google.appengine</groupId>
         <artifactId>appengine-maven-plugin</artifactId>
-        <version>1.9.32</version>
+        <version>${appengine.sdk.version}</version>
+        <configuration>
+               <enableJarClasses>false</enableJarClasses>
+               <version>1.9.32</version>
+               <jvmFlags> 
+               	<jvmFlag>-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n</jvmFlag>
+               </jvmFlags>
+            </configuration>
       </plugin>
     </plugins>
   </build>

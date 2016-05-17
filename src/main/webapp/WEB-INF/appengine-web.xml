@@ -16,5 +16,10 @@
   <application>bh-ioextended</application>
   <version>1</version>
   <threadsafe>true</threadsafe>
+  
+   <system-properties>
+      <property name="file.encoding" value="UTF-8" />
+      <property name="DEFAULT_ENCODING" value="UTF-8" />
+  </system-properties>
 </appengine-web-app>
 <!-- [END config] -->
