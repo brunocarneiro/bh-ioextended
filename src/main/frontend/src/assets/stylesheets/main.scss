@@ -37,6 +37,19 @@
   }
 }
 
+.inner-content-header,
+.inner-content-footer {
+  max-height: none;
+  min-height: 56px;
+  height: auto;
+
+  .md-toolbar-tools {
+    max-height: none;
+    min-height: 56px;
+    height: auto;
+  }
+}
+
 .inner-content-header {
   border-bottom: 1px solid rgba(0, 0, 0, .06);
 
@@ -57,15 +70,16 @@
   }
 
   md-input-container {
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 0;
   }
 }
 
 .inner-feed {
   .message {
-    max-width: 45%;
+    max-width: 60%;
     padding: 8px;
+    position: relative;
     border-radius: 2px;
     font-size: 14px;
     line-height: 1.3em;
@@ -73,18 +87,46 @@
     word-break: break-word;
 
     + .message {
-      margin-top: 8px;
+      margin-top: 12px;
     }
 
     &.self-start {
       align-self: flex-start;
       background-color: #eee;
+
+      img {
+        right: -11px;
+        border-color: #eee;
+      }
     }
 
     &.self-end {
       align-self: flex-end;
       background-color: #e1f5fe;
+
+      img {
+        left: -11px;
+        border-color: #e1f5fe;
+      }
     }
+  }
+
+  .message-user {
+    margin-bottom: 3px;
+    display: block;
+    color: rgba(0, 0, 0, .4);
+    font-size: 11.5px;
+    font-weight: 500;
+    line-height: 1em;
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    position: absolute;
+    top: -11px;
+    border: 2px solid #fff;
   }
 }
 
@@ -104,6 +146,7 @@
 
   .main-content {
     margin: 0;
+    border-radius: 0;
 
     &.login {
       width: auto;

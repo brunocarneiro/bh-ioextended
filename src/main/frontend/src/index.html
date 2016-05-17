@@ -108,14 +108,18 @@
               <div
                 class="message"
                 ng-class="{ 'self-start': message.from !== messenger.currentUser, 'self-end': message.from === messenger.currentUser }"
-                ng-repeat="message in messenger.messages | filter: { channel: messenger.currentChannel }">{{ message.body }}</div>
+                ng-repeat="message in messenger.messages | filter: { channel: messenger.currentChannel }">
+                <img src="http://avatars.io/twitter/{{ message.from }}/small" alt="{{ message.from }}">
+                <span class="message-user">{{ message.from }}</span>
+                <div class="message-content">{{ message.body }}</div>
+              </div>
             </div>
           </div>
 
           <md-toolbar class="inner-content-footer" md-theme="toolbars">
             <div class="md-toolbar-tools">
               <md-input-container md-no-float flex>
-                <input type="text" placeholder="Type a message" ng-model="messenger.input" md-maxlength="140" maxlength="140">
+                <textarea placeholder="Type a message" ng-model="messenger.input" md-maxlength="140" maxlength="140"></textarea>
               </md-input-container>
 
               <md-button type="button" class="md-accent md-hue-2 md-icon-button" ng-click="messenger.sendMessage(messenger.input)">
