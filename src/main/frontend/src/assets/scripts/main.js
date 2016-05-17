@@ -20,7 +20,6 @@
     })
     .controller('MessengerController', function($window, $http, $timeout) {
       var self = this;
-      var scrollabelPanel = document.querySelector('.scrollable');
 
       this.channel = '';
       this.channelId = '';
@@ -50,8 +49,10 @@
 
       this.scrollPanel = function() {
         $timeout(function() {
+          var scrollabelPanel = document.querySelector('.scrollable');
+
           scrollabelPanel.scrollTop = scrollabelPanel.scrollTop = scrollabelPanel.scrollHeight;
-        });
+        }, 100);
       };
 
       this.changeChannel = function(channel, icon) {
@@ -75,7 +76,7 @@
             body: message,
             channelId: self.channelId
           }
-        });
+        }).then(self.scrollPanel);
       };
 
       $http
@@ -105,7 +106,6 @@
         })
         .then(function(response) {
           self.messages = response.data.messages;
-
           self.scrollPanel();
         });
     });

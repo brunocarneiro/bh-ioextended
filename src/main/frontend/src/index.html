@@ -45,14 +45,14 @@
 
     <div class="container" layout="column" flex>
       <md-content class="main-content login layout-padding" md-whiteframe="2dp" ng-hide="messenger.currentUser">
-        <div layout="column">
+        <form novalidate layout="column" ng-submit="messenger.currentUser = user">
           <md-input-container>
             <label>Username</label>
             <input type="text" ng-model="user" maxlength="50">
           </md-input-container>
 
-          <md-button class="md-primary md-raised" ng-click="messenger.currentUser = user">Login</md-button>
-        </div>
+          <md-button type="submit" class="md-primary md-raised">Login</md-button>
+        </form>
       </md-content>
 
       <md-content class="main-content flex" md-whiteframe="2dp" layout ng-show="messenger.currentUser">
@@ -117,15 +117,15 @@
           </div>
 
           <md-toolbar class="inner-content-footer" md-theme="toolbars">
-            <div class="md-toolbar-tools">
+            <form novalidate class="md-toolbar-tools" ng-submit="messenger.sendMessage(messenger.input)">
               <md-input-container md-no-float flex>
-                <textarea placeholder="Type a message" ng-model="messenger.input" md-maxlength="140" maxlength="140"></textarea>
+                <input type="text" placeholder="Type a message" ng-model="messenger.input" md-maxlength="140" maxlength="140">
               </md-input-container>
 
-              <md-button type="button" class="md-accent md-hue-2 md-icon-button" ng-click="messenger.sendMessage(messenger.input)">
+              <md-button type="submit" class="md-accent md-hue-2 md-icon-button">
                 <md-icon>send</md-icon>
               </md-button>
-            </div>
+            </form>
           </md-toolbar>
         </div>
       </md-content>
