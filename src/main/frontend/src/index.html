@@ -1,0 +1,117 @@
+<!doctype html>
+
+<html lang="pt-BR" ng-app="messenger">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Google IO Extended">
+    <meta name="application-name" content="Google IO Extended">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="description" content="Google IO Extended">
+
+    <title>Google IO Extended</title>
+
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <link rel="stylesheet" href="vendor/angular-material.css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+
+  <body layout="column" ng-controller="MessengerController as messenger">
+    <md-toolbar class="background-toolbar md-tall"></md-toolbar>
+
+    <div class="container" layout="column" flex>
+      <md-content class="main-content layout-padding" md-whiteframe="2dp" ng-hide="messenger.currentUser">
+        <div layout="column" layout-align="start center">
+          <md-input-container>
+            <label>Username</label>
+            <input type="text" ng-model="user">
+          </md-input-container>
+
+          <md-button class="md-primary md-raised" ng-click="messenger.currentUser = user">Login</md-button>
+        </div>
+      </md-content>
+
+      <md-content class="main-content flex" md-whiteframe="2dp" layout ng-show="messenger.currentUser">
+        <div class="main-sidebar" flex="30" flex-xs="25">
+          <md-toolbar class="inner-content-header" md-theme="toolbars">
+            <div class="md-toolbar-tools">
+              <span class="md-title" flex hide-xs>Boards</span>
+            </div>
+          </md-toolbar>
+
+          <md-list>
+            <md-list-item md-ink-ripple ng-click="messenger.changeChannel('General', 'message')">
+              <md-icon class="md-avatar-icon">message</md-icon>
+              <p hide-xs>General</p>
+            </md-list-item>
+
+            <md-list-item md-ink-ripple ng-click="messenger.changeChannel('Party', 'local_bar')">
+              <md-icon class="md-avatar-icon">local_bar</md-icon>
+              <p hide-xs>Party</p>
+            </md-list-item>
+
+            <md-list-item md-ink-ripple ng-click="messenger.changeChannel('Lunch', 'local_pizza')">
+              <md-icon class="md-avatar-icon">local_pizza</md-icon>
+              <p hide-xs>Lunch</p>
+            </md-list-item>
+
+            <md-list-item md-ink-ripple ng-click="messenger.changeChannel('Keynote', 'slideshow')">
+              <md-icon class="md-avatar-icon">slideshow</md-icon>
+              <p hide-xs>Keynote</p>
+            </md-list-item>
+
+            <md-list-item md-ink-ripple ng-click="messenger.changeChannel('Networking', 'business_center')">
+              <md-icon class="md-avatar-icon">business_center</md-icon>
+              <p hide-xs>Networking</p>
+            </md-list-item>
+          </md-list>
+        </div>
+
+        <div flex layout="column">
+          <md-toolbar class="inner-content-header" md-theme="toolbars">
+            <div class="md-toolbar-tools">
+              <md-list>
+                <md-list-item>
+                  <md-icon class="md-avatar-icon">{{ messenger.currentChannelIcon }}</md-icon>
+                  <p>{{ messenger.currentChannel }}</p>
+                </md-list-item>
+              </md-list>
+            </div>
+          </md-toolbar>
+
+          <div class="inner-feed" flex layout="column" layout-align="end start">
+            <div class="scrollable">
+              <div
+                class="message"
+                ng-class="{ 'self-start': message.from !== messenger.currentUser, 'self-end': message.from === messenger.currentUser }"
+                ng-repeat="message in messenger.messages | filter: { channel: messenger.currentChannel }">{{ message.body }}</div>
+            </div>
+          </div>
+
+          <md-toolbar class="inner-content-footer" md-theme="toolbars">
+            <div class="md-toolbar-tools">
+              <md-input-container md-no-float flex>
+                <input type="text" placeholder="Type a message" ng-model="input">
+              </md-input-container>
+
+              <md-button type="button" class="md-accent md-hue-2 md-icon-button" ng-click="messenger.sendMessage(input)">
+                <md-icon>send</md-icon>
+              </md-button>
+            </div>
+          </md-toolbar>
+        </div>
+      </md-content>
+    </div>
+
+    <script src="vendor/angular.js"></script>
+    <script src="vendor/angular-animate.js"></script>
+    <script src="vendor/angular-aria.js"></script>
+    <script src="vendor/angular-material.js"></script>
+    <script src="assets/scripts/main.js"></script>
+    <script src="/_ah/channel/jsapi"></script>
+  </body>
+</html>

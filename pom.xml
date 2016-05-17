@@ -19,12 +19,12 @@ Copyright 2015 Google Inc. All Rights Reserved.
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <groupId>com.example.appengine</groupId>
-  <artifactId>appengine-helloworld</artifactId>
+  <artifactId>bh-ioextended</artifactId>
   <parent>
     <groupId>com.google.cloud</groupId>
     <artifactId>doc-samples</artifactId>
     <version>1.0.0</version>
-    <relativePath>../..</relativePath>
+    <relativePath>../java-docs-samples</relativePath>
   </parent>
   <dependencies>
     <dependency>
@@ -36,7 +36,7 @@ Copyright 2015 Google Inc. All Rights Reserved.
     <dependency>
      <groupId>com.google.appengine</groupId>
      <artifactId>appengine-api-1.0-sdk</artifactId>
-     <version>1.9.37</version>
+     <version>1.9.32</version>
     </dependency>
 	<dependency>
 	    <groupId>org.json</groupId>
@@ -62,7 +62,7 @@ Copyright 2015 Google Inc. All Rights Reserved.
       <plugin>
         <groupId>com.google.appengine</groupId>
         <artifactId>appengine-maven-plugin</artifactId>
-        <version>${appengine.sdk.version}</version>
+        <version>1.9.32</version>
       </plugin>
     </plugins>
   </build>
