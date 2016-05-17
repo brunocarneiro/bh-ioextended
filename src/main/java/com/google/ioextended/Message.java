@@ -47,7 +47,7 @@ public class Message {
 		
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Query q = new Query("Message");
-		q = q.addSort("timestamp", SortDirection.DESCENDING);
+		q = q.addSort("timestamp", SortDirection.ASCENDING);
 		List<Entity> entities = datastore.prepare(q).asList(FetchOptions.Builder.withLimit(100));
 		List<Message> messages = new ArrayList<>();
 		
