@@ -29,6 +29,25 @@
       this.currentChannel = 'General';
       this.currentChannelIcon = 'message';
 
+      this.channels = [
+        {
+          name: 'General',
+          icon: 'message'
+        }, {
+          name: 'Party',
+          icon: 'local_bar'
+        }, {
+          name: 'Lunch',
+          icon: 'local_pizza'
+        }, {
+          name: 'Keynote',
+          icon: 'slideshow'
+        }, {
+          name: 'Networking',
+          icon: 'business_center'
+        }
+      ];
+
       this.scrollPanel = function() {
         $timeout(function() {
           scrollabelPanel.scrollTop = scrollabelPanel.scrollTop = scrollabelPanel.scrollHeight;
@@ -40,9 +59,13 @@
         this.currentChannelIcon = icon;
 
         this.scrollPanel();
+
+        this.input = '';
       };
 
       this.sendMessage = function(message) {
+        this.input = '';
+
         $http({
           method: 'POST',
           url: '/message',
