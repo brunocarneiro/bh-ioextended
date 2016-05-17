@@ -22,14 +22,18 @@
   box-sizing: border-box;
   background-color: #fff;
   border-radius: 3px;
+
+  &.login {
+    max-width: 400px;
+  }
 }
 
 .main-sidebar {
   width: 320px;
   border-right: 1px solid rgba(0, 0, 0, .1);
 
-  md-list-item {
-    cursor: pointer;
+  .md-active {
+    background-color: #eee;
   }
 }
 
@@ -53,6 +57,7 @@
   }
 
   md-input-container {
+    margin-top: 10px;
     margin-bottom: 0;
   }
 }
@@ -65,6 +70,7 @@
     font-size: 14px;
     line-height: 1.3em;
     text-align: left;
+    word-break: break-word;
 
     + .message {
       margin-top: 8px;
@@ -89,4 +95,30 @@
   flex-flow: column;
   box-sizing: border-box;
   overflow: auto;
+}
+
+@media (max-width: 480px) {
+  .container  {
+    padding: 0;
+  }
+
+  .main-content {
+    margin: 0;
+
+    &.login {
+      width: auto;
+      margin: 100px 16px 0;
+    }
+  }
+
+  .main-sidebar {
+    width: 72px;
+    flex: 0 0 auto;
+    overflow: hidden;
+    flex: 0 0 auto !important;
+
+    md-list {
+      padding: 0;
+    }
+  }
 }

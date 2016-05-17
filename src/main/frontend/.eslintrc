@@ -7,13 +7,15 @@
     "superInFunctions": true
   },
   "env": {
+    "browser": true,
     "amd": true,
     "es6": true,
-    "node": true,
-    "browser": true
+    "node": true
   },
-  "global": {
+  "globals": {
     "arguments": true,
+    "window": true,
+    "gapi": true,
     "angular": true
   },
   "rules": {
@@ -30,12 +32,6 @@
       "1tbs",
       {
         "allowSingleLine": false
-      }
-    ],
-    "camelcase": [
-      2,
-      {
-        "properties": "always"
       }
     ],
     "comma-dangle": [
@@ -82,10 +78,6 @@
         "beforeColon": false,
         "afterColon": true
       }
-    ],
-    "linebreak-style": [
-      1,
-      "unix"
     ],
     "max-nested-callbacks": [
       1,
@@ -153,10 +145,13 @@
     "no-unreachable": 2,
     "no-unused-vars": 1,
     "no-use-before-define": 1,
-    "no-var": 2,
     "one-var": [
       2,
       "never"
+    ],
+    "quote-props": [
+      1,
+      "as-needed"
     ],
     "quotes": [
       2,
@@ -174,15 +169,13 @@
         "after": true
       }
     ],
-    "space-after-keywords": 2,
+    "keyword-spacing": 2,
     "space-before-blocks": 2,
     "space-before-function-paren": [
       2,
       "never"
     ],
-    "space-before-keywords": 2,
     "space-infix-ops": 2,
-    "space-return-throw-case": 2,
     "space-unary-ops": 2,
     "strict": 0,
     "use-isnan": 2,

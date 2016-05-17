@@ -3,32 +3,52 @@
 <html lang="pt-BR" ng-app="messenger">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="cleartype" content="on">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Google IO Extended">
-    <meta name="application-name" content="Google IO Extended">
-    <meta http-equiv="cleartype" content="on">
-    <meta name="description" content="Google IO Extended">
+    <meta name="apple-mobile-web-app-title" content="Google IO Extended Chat">
+    <meta name="application-name" content="Google IO Extended Chat">
+    <meta name="description" content="Google IO Extended Chat">
+    <meta name="msapplication-TileColor" content="#2196f3">
+    <meta name="theme-color" content="#2196f3">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
 
-    <title>Google IO Extended</title>
+    <title>Google IO Extended Chat</title>
 
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="assets/stylesheets/main.css">
-    <link rel="stylesheet" href="vendor/angular-material.css">
+    <link rel="stylesheet" href="vendor/angular-material.min.css">
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
     <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/images/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/images/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="assets/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="assets/images/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="assets/images/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="assets/images/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="assets/images/favicon-16x16.png" sizes="16x16">
+    <link rel="mask-icon" href="assets/images/safari-pinned-tab.svg" color="#2196f3">
   </head>
 
-  <body layout="column" ng-controller="MessengerController as messenger">
-    <md-toolbar class="background-toolbar md-tall"></md-toolbar>
+  <body layout="column" ng-controller="MessengerController as messenger" ng-cloak>
+    <md-toolbar class="background-toolbar md-tall" hide-xs></md-toolbar>
 
     <div class="container" layout="column" flex>
-      <md-content class="main-content layout-padding" md-whiteframe="2dp" ng-hide="messenger.currentUser">
-        <div layout="column" layout-align="start center">
+      <md-content class="main-content login layout-padding" md-whiteframe="2dp" ng-hide="messenger.currentUser">
+        <div layout="column">
           <md-input-container>
             <label>Username</label>
-            <input type="text" ng-model="user">
+            <input type="text" ng-model="user" maxlength="50">
           </md-input-container>
 
           <md-button class="md-primary md-raised" ng-click="messenger.currentUser = user">Login</md-button>
@@ -36,35 +56,35 @@
       </md-content>
 
       <md-content class="main-content flex" md-whiteframe="2dp" layout ng-show="messenger.currentUser">
-        <div class="main-sidebar" flex="30" flex-xs="25">
-          <md-toolbar class="inner-content-header" md-theme="toolbars">
+        <div class="main-sidebar" flex="30" flex-xs="none">
+          <md-toolbar class="inner-content-header" md-theme="toolbars" hide-xs>
             <div class="md-toolbar-tools">
-              <span class="md-title" flex hide-xs>Boards</span>
+              <span class="md-title" flex>Boards</span>
             </div>
           </md-toolbar>
 
           <md-list>
-            <md-list-item md-ink-ripple ng-click="messenger.changeChannel('General', 'message')">
+            <md-list-item md-ink-ripple ng-class="{ 'md-active': messenger.currentChannel === 'General' }" ng-click="messenger.changeChannel('General', 'message')">
               <md-icon class="md-avatar-icon">message</md-icon>
               <p hide-xs>General</p>
             </md-list-item>
 
-            <md-list-item md-ink-ripple ng-click="messenger.changeChannel('Party', 'local_bar')">
+            <md-list-item md-ink-ripple ng-class="{ 'md-active': messenger.currentChannel === 'Party' }" ng-click="messenger.changeChannel('Party', 'local_bar')">
               <md-icon class="md-avatar-icon">local_bar</md-icon>
               <p hide-xs>Party</p>
             </md-list-item>
 
-            <md-list-item md-ink-ripple ng-click="messenger.changeChannel('Lunch', 'local_pizza')">
+            <md-list-item md-ink-ripple ng-class="{ 'md-active': messenger.currentChannel === 'Lunch' }" ng-click="messenger.changeChannel('Lunch', 'local_pizza')">
               <md-icon class="md-avatar-icon">local_pizza</md-icon>
               <p hide-xs>Lunch</p>
             </md-list-item>
 
-            <md-list-item md-ink-ripple ng-click="messenger.changeChannel('Keynote', 'slideshow')">
+            <md-list-item md-ink-ripple ng-class="{ 'md-active': messenger.currentChannel === 'Keynote' }" ng-click="messenger.changeChannel('Keynote', 'slideshow')">
               <md-icon class="md-avatar-icon">slideshow</md-icon>
               <p hide-xs>Keynote</p>
             </md-list-item>
 
-            <md-list-item md-ink-ripple ng-click="messenger.changeChannel('Networking', 'business_center')">
+            <md-list-item md-ink-ripple ng-class="{ 'md-active': messenger.currentChannel === 'Networking' }" ng-click="messenger.changeChannel('Networking', 'business_center')">
               <md-icon class="md-avatar-icon">business_center</md-icon>
               <p hide-xs>Networking</p>
             </md-list-item>
@@ -95,10 +115,10 @@
           <md-toolbar class="inner-content-footer" md-theme="toolbars">
             <div class="md-toolbar-tools">
               <md-input-container md-no-float flex>
-                <input type="text" placeholder="Type a message" ng-model="input">
+                <input type="text" placeholder="Type a message" ng-model="messenger.input" md-maxlength="140" maxlength="140">
               </md-input-container>
 
-              <md-button type="button" class="md-accent md-hue-2 md-icon-button" ng-click="messenger.sendMessage(input)">
+              <md-button type="button" class="md-accent md-hue-2 md-icon-button" ng-click="messenger.sendMessage(messenger.input)">
                 <md-icon>send</md-icon>
               </md-button>
             </div>
@@ -107,10 +127,10 @@
       </md-content>
     </div>
 
-    <script src="vendor/angular.js"></script>
-    <script src="vendor/angular-animate.js"></script>
-    <script src="vendor/angular-aria.js"></script>
-    <script src="vendor/angular-material.js"></script>
+    <script src="vendor/angular.min.js"></script>
+    <script src="vendor/angular-animate.min.js"></script>
+    <script src="vendor/angular-aria.min.js"></script>
+    <script src="vendor/angular-material.min.js"></script>
     <script src="assets/scripts/main.js"></script>
     <script src="/_ah/channel/jsapi"></script>
   </body>
