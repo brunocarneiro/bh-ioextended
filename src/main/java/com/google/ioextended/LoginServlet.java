@@ -26,8 +26,9 @@ public class LoginServlet extends HttpServlet {
 		
 		JSONObject object = new JSONObject();
 		object.put("messages", new JSONArray(Message.list()));
-		resp.setCharacterEncoding("UTF-8");
-		resp.getWriter().write(new String(object.toString().getBytes(), Charset.forName("UTF-8")));
+		resp.setHeader("Content-Type", "application/json;charset=UTF-8");
+		resp.setContentType("application/json; charset=UTF-8");
+		resp.getWriter().write(object.toString());
 		resp.getWriter().flush();
 	}
 

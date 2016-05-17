@@ -101,7 +101,7 @@
             }
           });
 
-          return $http.get('/login');
+          return $http({url:'/login', method: 'GET', headers:{'Accept': 'application/json;charset=UTF-8', 'Accept-Charset':'UTF-8'}});
         })
         .then(function(response) {
           self.messages = response.data.messages;

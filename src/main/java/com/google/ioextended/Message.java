@@ -12,6 +12,8 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 
 public class Message {
 	
+	static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+	
 	private Long id;
 	
 	private String body;
@@ -33,7 +35,6 @@ public class Message {
 
 	public void save(){
 		
-		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Entity entity = new Entity("Message");
 		entity.setIndexedProperty("body", this.body);
 		entity.setIndexedProperty("from", this.from);
@@ -45,7 +46,6 @@ public class Message {
 	
 	public static List<Message> list(){
 		
-		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Query q = new Query("Message");
 		q = q.addSort("timestamp", SortDirection.ASCENDING);
 		List<Entity> entities = datastore.prepare(q).asList(FetchOptions.Builder.withLimit(100));
