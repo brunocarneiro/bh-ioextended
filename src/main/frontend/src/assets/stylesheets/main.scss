@@ -69,6 +69,8 @@
 }
 
 .inner-feed {
+  padding: 2px;
+
   .message {
     max-width: 60%;
     padding: 8px;
@@ -125,11 +127,23 @@
 
 .scrollable {
   width: 100%;
-  padding: 16px;
+  padding: 14px;
   display: flex;
   flex-flow: column;
   box-sizing: border-box;
   overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, .2);
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, .08);
 }
 
 @media (max-width: 480px) {
