@@ -38,5 +38,8 @@
     "run-sequence": "^1.1.5",
     "sass-module-importer": "^1.2.0",
     "watchify": "^3.7.0"
+  },
+  "dependencies": {
+    "ng-error": "^1.0.2"
   }
 }

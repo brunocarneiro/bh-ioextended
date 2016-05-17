@@ -26,6 +26,17 @@
   &.login {
     max-width: 400px;
   }
+
+  .hint {
+    margin: 0;
+    position: absolute;
+    right: auto;
+    bottom: 5px;
+    left: 2px;
+    font-size: 12px;
+    line-height: 14px;
+    color: rgba(0, 0, 0, .54);
+  }
 }
 
 .main-sidebar {
@@ -73,37 +84,60 @@
 
   .message {
     max-width: 60%;
-    padding: 8px;
     position: relative;
-    border-radius: 2px;
     font-size: 14px;
     line-height: 1.3em;
     text-align: left;
     word-break: break-word;
 
     + .message {
-      margin-top: 12px;
+      margin-top: 8px;
     }
 
     &.self-start {
       align-self: flex-start;
-      background-color: #eee;
 
       img {
-        right: -11px;
-        border-color: #eee;
+        margin-right: 8px;
+        float: left;
+      }
+
+      .message-content {
+        background-color: #eee;
+        box-shadow: 0 1px 3px 0 rgba(#eee, .1),
+                    0 1px 1px 0 rgba(#eee, .04),
+                    0 2px 1px -1px rgba(#eee, .06)
       }
     }
 
     &.self-end {
       align-self: flex-end;
-      background-color: #e1f5fe;
 
       img {
-        left: -11px;
-        border-color: #e1f5fe;
+        margin-left: 8px;
+        float: right;
+      }
+
+      .message-content {
+        background-color: #e1f5fe;
+        box-shadow: 0 1px 3px 0 rgba(#e1f5fe, .1),
+                    0 1px 1px 0 rgba(#e1f5fe, .04),
+                    0 2px 1px -1px rgba(#e1f5fe, .06)
       }
     }
+  }
+
+  img {
+    width: 36px;
+    height: 36px;
+    margin-top: 6px;
+    border-radius: 100%;
+  }
+
+  .message-content {
+    padding: 8px;
+    border-radius: 3px;
+    overflow: hidden;
   }
 
   .message-user {
@@ -113,15 +147,6 @@
     font-size: 11.5px;
     font-weight: 500;
     line-height: 1em;
-  }
-
-  img {
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
-    position: absolute;
-    top: -11px;
-    border: 2px solid #fff;
   }
 }
 

@@ -3,6 +3,7 @@
   angular
     .module('messenger', [
       'ngAnimate',
+      'ngError',
       'ngMaterial'
     ])
     .config(function($mdThemingProvider) {
@@ -46,6 +47,10 @@
           icon: 'business_center'
         }
       ];
+
+      this.onImageError = function($event) {
+        $event.target.src = 'https://abs.twimg.com/sticky/default_profile_images/default_profile_' + (Math.floor(Math.random() * 6) + 1) + '_normal.png';
+      };
 
       this.scrollPanel = function() {
         $timeout(function() {
