@@ -51,7 +51,9 @@
         $timeout(function() {
           var scrollabelPanel = document.querySelector('.scrollable');
 
-          scrollabelPanel.scrollTop = scrollabelPanel.scrollTop = scrollabelPanel.scrollHeight;
+          if (scrollabelPanel.scrollHeight !== scrollabelPanel.scrollTop) {
+            scrollabelPanel.scrollTop = scrollabelPanel.scrollTop = scrollabelPanel.scrollHeight;
+          }
         }, 100);
       };
 
