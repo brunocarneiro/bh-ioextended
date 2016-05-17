@@ -49,6 +49,8 @@
           <md-input-container>
             <label>Username</label>
             <input type="text" ng-model="user" maxlength="50">
+
+            <p class="hint">CI&amp;T and Google are not responsible for anything posted here.</p>
           </md-input-container>
 
           <md-button type="submit" class="md-primary md-raised">Login</md-button>
@@ -64,29 +66,9 @@
           </md-toolbar>
 
           <md-list>
-            <md-list-item md-ink-ripple ng-class="{ 'md-active': messenger.currentChannel === 'General' }" ng-click="messenger.changeChannel('General', 'message')">
-              <md-icon class="md-avatar-icon">message</md-icon>
-              <p hide-xs>General</p>
-            </md-list-item>
-
-            <md-list-item md-ink-ripple ng-class="{ 'md-active': messenger.currentChannel === 'Party' }" ng-click="messenger.changeChannel('Party', 'local_bar')">
-              <md-icon class="md-avatar-icon">local_bar</md-icon>
-              <p hide-xs>Party</p>
-            </md-list-item>
-
-            <md-list-item md-ink-ripple ng-class="{ 'md-active': messenger.currentChannel === 'Lunch' }" ng-click="messenger.changeChannel('Lunch', 'local_pizza')">
-              <md-icon class="md-avatar-icon">local_pizza</md-icon>
-              <p hide-xs>Lunch</p>
-            </md-list-item>
-
-            <md-list-item md-ink-ripple ng-class="{ 'md-active': messenger.currentChannel === 'Keynote' }" ng-click="messenger.changeChannel('Keynote', 'slideshow')">
-              <md-icon class="md-avatar-icon">slideshow</md-icon>
-              <p hide-xs>Keynote</p>
-            </md-list-item>
-
-            <md-list-item md-ink-ripple ng-class="{ 'md-active': messenger.currentChannel === 'Networking' }" ng-click="messenger.changeChannel('Networking', 'business_center')">
-              <md-icon class="md-avatar-icon">business_center</md-icon>
-              <p hide-xs>Networking</p>
+            <md-list-item md-ink-ripple ng-repeat="channel in messenger.channels" ng-class="{ 'md-active': messenger.currentChannel === channel.name }" ng-click="messenger.changeChannel(channel.name, channel.icon)">
+              <md-icon class="md-avatar-icon">{{ channel.icon }}</md-icon>
+              <p hide-xs>{{ channel.name }}</p>
             </md-list-item>
           </md-list>
         </div>
@@ -108,10 +90,12 @@
               <div
                 class="message"
                 ng-class="{ 'self-start': message.from !== messenger.currentUser, 'self-end': message.from === messenger.currentUser }"
-                ng-repeat="message in messenger.messages | filter: { channel: messenger.currentChannel }">
-                <img src="http://avatars.io/twitter/{{ message.from }}/small" alt="{{ message.from }}">
-                <span class="message-user">{{ message.from }}</span>
-                <div class="message-content">{{ message.body }}</div>
+                ng-repeat="message in messenger.messages | filter: { channel: messenger.currentChannel } track by message.timestamp">
+                <img src="https://twitter.com/{{ message.from }}/profile_image" alt="{{ message.from }}" ng-error="messenger.onImageError($event)" ng-show="message.from !== messenger.currentUser">
+                <div class="message-content">
+                  <span class="message-user" ng-show="message.from !== messenger.currentUser">{{ message.from }}</span>
+                  <div class="message-text">{{ message.body }}</div>
+                </div>
               </div>
             </div>
           </div>
@@ -134,6 +118,7 @@
     <script src="vendor/angular.min.js"></script>
     <script src="vendor/angular-animate.min.js"></script>
     <script src="vendor/angular-aria.min.js"></script>
+    <script src="vendor/ng-error.js"></script>
     <script src="vendor/angular-material.min.js"></script>
     <script src="assets/scripts/main.js"></script>
     <script src="/_ah/channel/jsapi"></script>
