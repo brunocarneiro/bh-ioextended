@@ -47,13 +47,13 @@
       <md-content class="main-content login layout-padding" md-whiteframe="2dp" ng-hide="messenger.currentUser">
         <form novalidate layout="column" ng-submit="messenger.currentUser = user">
           <md-input-container>
-            <label>Username</label>
+            <label>Digite o seu Twitter ou seu nome</label>
             <input type="text" ng-model="user" maxlength="50">
 
-            <p class="hint">CI&amp;T and Google are not responsible for anything posted here.</p>
+            <p class="hint">CI&amp;T e o Google não são responsáveis pelas mensagens postadas.</p>
           </md-input-container>
 
-          <md-button type="submit" class="md-primary md-raised">Login</md-button>
+          <md-button type="submit" class="md-primary md-raised">Entrar</md-button>
         </form>
       </md-content>
 
@@ -103,7 +103,7 @@
           <md-toolbar class="inner-content-footer" md-theme="toolbars">
             <form novalidate class="md-toolbar-tools" ng-submit="messenger.sendMessage(messenger.input)">
               <md-input-container md-no-float flex>
-                <input type="text" placeholder="Type a message" ng-model="messenger.input" md-maxlength="140" maxlength="140">
+                <input type="text" placeholder="Digite uma mensagem" ng-model="messenger.input" md-maxlength="140" maxlength="140">
               </md-input-container>
 
               <md-button type="submit" class="md-accent md-hue-2 md-icon-button">

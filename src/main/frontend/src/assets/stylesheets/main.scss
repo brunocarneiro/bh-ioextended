@@ -31,7 +31,7 @@
     margin: 0;
     position: absolute;
     right: auto;
-    bottom: 5px;
+    bottom: 3px;
     left: 2px;
     font-size: 12px;
     line-height: 14px;
@@ -85,6 +85,7 @@
   .message {
     max-width: 60%;
     position: relative;
+    display: flex;
     font-size: 14px;
     line-height: 1.3em;
     text-align: left;

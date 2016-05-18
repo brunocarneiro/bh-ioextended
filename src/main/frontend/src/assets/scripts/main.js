@@ -26,18 +26,18 @@
       this.channelId = '';
       this.messages = [];
       this.currentUser = '';
-      this.currentChannel = 'General';
+      this.currentChannel = 'Geral';
       this.currentChannelIcon = 'message';
 
       this.channels = [
         {
-          name: 'General',
+          name: 'Geral',
           icon: 'message'
         }, {
-          name: 'Party',
+          name: 'Festa',
           icon: 'local_bar'
         }, {
-          name: 'Lunch',
+          name: 'Almoço',
           icon: 'local_pizza'
         }, {
           name: 'Keynote',
