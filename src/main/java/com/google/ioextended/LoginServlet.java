@@ -1,7 +1,6 @@
 package com.google.ioextended;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 		
 		ChannelService channelService = ChannelServiceFactory.getChannelService();
 
-		String channelId = channelService.createChannel(CHANNEL_ID);
+		String channelId = channelService.createChannel(CHANNEL_ID, 1440);
 		
 		JSONObject object = new JSONObject();
 		object.put("channelId", channelId);
